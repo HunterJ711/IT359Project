@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aptriage"
+version = "0.1.0"
+description = "AI-assisted Nmap analysis and penetration-testing report generator"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+  {name = "Hunter Jackson"},
+  {name = "Tyler Werner"},
+]
+dependencies = []
+
+[project.scripts]
+aptriage = "aptriage.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

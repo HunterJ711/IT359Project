@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Synthetic demonstration evidence. No real organization or public system is represented. -->
+<nmaprun scanner="nmap" args="nmap -sV -oX demo_scan.xml 192.168.56.101" start="1794484800" version="7.95" xmloutputversion="1.05">
+  <host>
+    <status state="up" reason="echo-reply" reason_ttl="64"/>
+    <address addr="192.168.56.101" addrtype="ipv4"/>
+    <hostnames>
+      <hostname name="training-target.local" type="PTR"/>
+    </hostnames>
+    <ports>
+      <port protocol="tcp" portid="21">
+        <state state="open" reason="syn-ack" reason_ttl="64"/>
+        <service name="ftp" product="vsftpd" version="2.3.4" method="probed" conf="10"/>
+      </port>
+      <port protocol="tcp" portid="22">
+        <state state="open" reason="syn-ack" reason_ttl="64"/>
+        <service name="ssh" product="OpenSSH" version="8.9p1" method="probed" conf="10"/>
+      </port>
+      <port protocol="tcp" portid="23">
+        <state state="open" reason="syn-ack" reason_ttl="64"/>
+        <service name="telnet" product="Linux telnetd" method="probed" conf="10"/>
+      </port>
+      <port protocol="tcp" portid="80">
+        <state state="open" reason="syn-ack" reason_ttl="64"/>
+        <service name="http" product="Apache httpd" version="2.4.52" method="probed" conf="10"/>
+      </port>
+      <port protocol="tcp" portid="3306">
+        <state state="open" reason="syn-ack" reason_ttl="64"/>
+        <service name="mysql" product="MySQL" version="8.0.35" method="probed" conf="10"/>
+      </port>
+      <port protocol="tcp" portid="9999">
+        <state state="closed" reason="reset" reason_ttl="64"/>
+        <service name="unknown" method="table" conf="3"/>
+      </port>
+    </ports>
+    <os>
+      <osmatch name="Linux 5.15" accuracy="96" line="0"/>
+    </os>
+  </host>
+  <runstats>
+    <finished time="1794484860" timestr="Thu Nov 12 12:01:00 2026" elapsed="60.00" summary="Nmap done" exit="success"/>
+    <hosts up="1" down="0" total="1"/>
+  </runstats>
+</nmaprun>
+
