@@ -54,6 +54,13 @@ Install APTriage in editable mode:
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -e .
+python -m pip install requests
+```
+
+Add your API key to config.json
+
+```bash
+nano config.json
 ```
 
 For development tests:
