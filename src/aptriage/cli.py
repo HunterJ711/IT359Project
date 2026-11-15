@@ -10,6 +10,7 @@ import sys
 from .classifier import classify_scan
 from .nmap_parser import NmapParseError, parse_nmap_xml
 from .report_generator import render_markdown_report
+from .AI_Enhance import *
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -39,6 +40,7 @@ def _run_analyze(input_path: Path, output_path: Path) -> int:
         return 2
 
     findings = classify_scan(scan)
+    findings = AI_Enhancement(findings)
     report = render_markdown_report(scan, findings)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(report, encoding="utf-8")
