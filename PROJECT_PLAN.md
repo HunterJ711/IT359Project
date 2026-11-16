@@ -18,7 +18,7 @@
 
 APTriage will be a Python-based penetration testing support tool that turns raw Nmap scan results into organized, understandable, and actionable security findings.
 
-The tool will run or import an authorized Nmap scan, extract information such as hosts, open ports, services, protocols, and service versions, and organize those results into structured findings. Basic rule-based logic will identify findings that may deserve additional attention and assign a simple severity level such as Low, Medium, or High.
+The tool will import an authorized Nmap XML scan, extract information such as hosts, open ports, services, protocols, and service versions, and organize those results into structured findings. Basic rule-based logic will identify findings that may deserve additional attention and assign a simple severity level such as Low, Medium, or High.
 
 Artificial intelligence will then assist with analysis by explaining what selected findings mean, why they may matter from a security perspective, and what remediation steps could reduce the associated risk. APTriage will combine the original scan evidence, severity classification, AI-generated analysis, and remediation guidance into a readable penetration testing report.
 
@@ -56,7 +56,7 @@ Final Pentest Report
 The primary objectives of APTriage are to:
 
 - Build a functional Python-based penetration testing support tool.
-- Run or import authorized Nmap scans.
+- Import authorized Nmap XML scans.
 - Parse Nmap XML output.
 - Extract discovered hosts, open ports, protocols, services, and available version information.
 - Organize scan results into a clear and consistent format.
@@ -76,7 +76,7 @@ The primary objectives of APTriage are to:
 The project will be considered successful when:
 
 1. APTriage runs successfully in the intended environment.
-2. The program can execute or accept an authorized Nmap scan.
+2. The program can accept an authorized Nmap XML scan.
 3. Nmap XML results are parsed correctly.
 4. Hosts, ports, protocols, services, and available version information are extracted correctly.
 5. Findings are organized into a consistent structure.
@@ -176,7 +176,7 @@ The project assumes that:
 - Python 3 will be available on the development systems.
 - Nmap can be installed and executed.
 - An authorized lab or virtual-machine environment will be available.
-- Internet access will be available if a cloud-based AI service is selected.
+- ISU network or VPN access will be available when the optional Sushi AI mode is demonstrated.
 - GitHub will be available for version control and project submission.
 - AI-generated content will be treated as supplemental analysis rather than unquestioned fact.
 - Important AI-generated conclusions will be reviewed by the project team.
@@ -189,7 +189,7 @@ Major constraints include:
 - The project is being completed by two students while balancing other coursework.
 - The final repository and deliverables must be completed by December 3, 2026.
 - AI output may occasionally be inaccurate or overly general.
-- AI APIs may have usage limits or costs.
+- The Sushi service, account approval, installed models, or network access may be unavailable.
 - Nmap results vary depending on the target system and scan permissions.
 - Security testing must remain within explicitly authorized environments.
 - The project must remain small enough to be fully tested, documented, and demonstrated by the deadline.
@@ -203,31 +203,37 @@ GitHub will serve as the central location for source control, project documentat
 ### Planned Repository Structure
 
 ```text
-aptriage/
+IT359Project/
 |
 |-- .gitignore
 |-- README.md
 |-- PROJECT_PLAN.md
+|-- pyproject.toml
 |-- requirements.txt
 |
-|-- src/
-|   |-- main.py
-|   |-- scanner.py
-|   |-- parser.py
+|-- src/aptriage/
+|   |-- cli.py
+|   |-- nmap_parser.py
 |   |-- classifier.py
-|   |-- ai_analyzer.py
-|   `-- reporter.py
+|   |-- ai_client.py
+|   `-- report_generator.py
 |
 |-- tests/
 |   |-- test_parser.py
 |   |-- test_classifier.py
-|   `-- sample_scans/
+|   |-- test_ai_client.py
+|   `-- test_report.py
 |
-|-- docs/
-|   `-- Final_Writeup_Jackson_Werner.pdf
+|-- samples/
+|   `-- demo_scan.xml
 |
-`-- output/
-    `-- example_report.md
+|-- reports/
+|   `-- generated Markdown reports
+|
+`-- docs/
+    |-- Example_APTriage_Report.md
+    |-- Final_Writeup_Jackson_Werner.pdf
+    `-- Presentation_Slides.pdf
 ```
 
 The exact filenames may change during development, but the repository will remain organized around source code, tests, documentation, and sample output.
@@ -288,7 +294,7 @@ The team will aim to have the complete core workflow functional by **November 5,
 | Nmap XML parsing fails on certain scans | Medium | High | Test multiple XML files and handle missing fields safely |
 | Project scope becomes too large | Medium | High | Prioritize the minimum viable product and treat additional features as optional |
 | AI API becomes unavailable | Low-Medium | Medium | Keep scanning/parsing/classification functional without AI and save known-good test outputs |
-| API usage creates unexpected cost | Low | Medium | Limit requests to relevant findings and monitor usage |
+| Sushi account or model is unavailable | Low-Medium | Medium | Keep the complete deterministic workflow functional and retain a known-good report for backup |
 | One team member becomes temporarily unavailable | Low-Medium | Medium | Keep all source code and documentation synchronized through GitHub so either member can continue work |
 | Merge conflicts or integration bugs occur | Medium | Medium | Use frequent pulls, small commits, feature branches when appropriate, and code review before large merges |
 | Testing environment becomes unavailable | Low | Medium | Maintain saved Nmap XML files for development and demonstration backup |
@@ -312,8 +318,8 @@ The project is expected to require little or no direct cost.
 | Git / GitHub | $0 |
 | Visual Studio Code or similar IDE | $0 |
 | Authorized lab / virtual machines | $0 |
-| AI service | $0-$20 |
-| **Estimated Total** | **$0-$20** |
+| ISU Sushi AI service | $0 |
+| **Estimated Total** | **$0** |
 
 The team will prioritize free and open-source tools whenever possible.
 
@@ -330,8 +336,8 @@ Expected technologies include:
 - Nmap XML output
 - Python XML parsing
 - JSON where appropriate
-- AI API or other approved AI model
-- Markdown and/or HTML for reporting
+- ISU Sushi AI server with `llama3.1:latest`
+- Markdown reporting
 - Authorized lab systems or virtual machines
 
 Potential Python modules/libraries include:
