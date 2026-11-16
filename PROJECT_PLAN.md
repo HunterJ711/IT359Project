@@ -86,8 +86,8 @@ The project will be considered successful when:
 9. Raw Nmap evidence remains visible and distinguishable from AI-generated analysis.
 10. The application generates a readable final penetration testing report.
 11. The tool is tested against authorized lab systems or intentionally vulnerable virtual machines.
-12. The GitHub repository contains all required source code, documentation, dependencies, final report, and presentation link.
-13. Hunter Jackson and Tyler Werner can successfully demonstrate the complete workflow in the final video presentation.
+12. The GitHub repository contains all required source code, documentation, dependencies, final report, and `docs/Presentation_Slides.pdf`.
+13. Hunter Jackson and Tyler Werner can successfully demonstrate the complete workflow during the 10-15 minute in-person presentation, with each member speaking meaningfully.
 
 ---
 
@@ -108,7 +108,7 @@ The course instructor serves as the project sponsor and evaluator by defining ac
 | IT 359 Instructor | Sponsor / Evaluator | Define requirements, provide academic guidance, and evaluate final deliverables |
 | Authorized Lab Users / Test Environment | Test Stakeholder | Provide safe and authorized systems for testing and demonstration |
 
-Both team members will contribute to development, code review, debugging, testing, documentation, the final report, and the video presentation.
+Both team members will contribute to development, code review, debugging, testing, documentation, the final report, and the in-person presentation.
 
 ---
 
@@ -242,7 +242,7 @@ The team will use the following practices:
 - GitHub Projects may be used as a simple Kanban board with categories such as **Backlog**, **In Progress**, **Testing**, and **Done**.
 - Commits will be made regularly with descriptive commit messages.
 - Pull requests may be used for larger changes to allow the other team member to review code before merging.
-- The repository README will contain installation instructions, dependencies, usage examples, and the final presentation link.
+- The repository README will contain installation instructions, dependencies, and usage examples.
 - Secrets such as API keys will never be committed to the repository.
 - A `.gitignore` file will exclude virtual environments, API key files, temporary output, and other unnecessary files.
 
@@ -271,7 +271,7 @@ The project will be developed incrementally from August 27 through December 3, 2
 | Nov. 26 | Documentation | README setup/usage sections, dependencies, examples, and repository documentation substantially complete |
 | Nov. 30 | Final writeup | 5-7 page PDF report completed and added to `docs/` |
 | Dec. 1 | Demo preparation | Reliable demo target/sample scan prepared; presentation outline completed |
-| Dec. 2 | Video and repository review | 10-15 minute video recorded; video link placed at top of README; repository checked for missing files/secrets |
+| Dec. 2 | Presentation and repository review | Live demonstration rehearsed; 8-12 slide deck exported to `docs/Presentation_Slides.pdf`; backup screenshots prepared; repository checked for missing files/secrets |
 | **Dec. 3** | **Final project completion** | **Public GitHub repository finalized and ready for submission** |
 
 ### Minimum Viable Product Deadline
@@ -313,7 +313,6 @@ The project is expected to require little or no direct cost.
 | Visual Studio Code or similar IDE | $0 |
 | Authorized lab / virtual machines | $0 |
 | AI service | $0-$20 |
-| OBS Studio or equivalent recording software | $0 |
 | **Estimated Total** | **$0-$20** |
 
 The team will prioritize free and open-source tools whenever possible.
@@ -334,7 +333,6 @@ Expected technologies include:
 - AI API or other approved AI model
 - Markdown and/or HTML for reporting
 - Authorized lab systems or virtual machines
-- OBS Studio or equivalent screen-recording software
 
 Potential Python modules/libraries include:
 
@@ -439,8 +437,9 @@ The following items can be entered as GitHub Issues and, where required, pushed 
 | Complete README setup and usage guide | Hunter | Nov. 26 | Yes | Yes |
 | Complete final 5-7 page report | Hunter / Tyler | Nov. 30 | Yes | Yes |
 | Prepare demonstration environment | Hunter / Tyler | Dec. 1 | Yes | Yes |
-| Record final 10-15 minute presentation | Hunter / Tyler | Dec. 2 | Yes | Yes |
-| Add video link to top of README | Hunter / Tyler | Dec. 2 | Yes | Yes |
+| Create 8-12 presentation slides and export `docs/Presentation_Slides.pdf` | Hunter / Tyler | Dec. 2 | Yes | Yes |
+| Rehearse the 10-15 minute in-person presentation and live demonstration | Hunter / Tyler | Dec. 2 | Yes | Yes |
+| Add backup demonstration screenshots to the slide deck | Hunter / Tyler | Dec. 2 | Yes | Yes |
 | Review public repository for completeness and exposed secrets | Hunter / Tyler | Dec. 2 | Yes | Yes |
 | Finalize repository for submission | Hunter / Tyler | **Dec. 3** | Yes | Yes |
 
@@ -534,12 +533,12 @@ By **December 3, 2026**, the public GitHub repository will contain:
 - Complete source code.
 - `.gitignore` file.
 - `requirements.txt` or equivalent dependency documentation.
-- README with the presentation link at the top.
+- Comprehensive README with project overview, setup, usage, testing, and limitations.
 - Clear setup and execution instructions.
 - Usage examples.
 - Project plan.
 - Test/sample data appropriate for public release.
 - Final 5-7 page PDF report in the `docs/` folder.
-- Link to the 10-15 minute presentation video.
+- PDF copy of the 8-12 presentation slides at `docs/Presentation_Slides.pdf`.
 
 The final project will demonstrate how artificial intelligence can assist penetration testers with one of the most time-consuming stages of the process: turning raw reconnaissance data into organized, understandable, and actionable security findings while keeping the final interpretation and decisions under human control.

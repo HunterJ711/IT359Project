@@ -21,6 +21,22 @@ class ReportTests(unittest.TestCase):
         self.assertIn("AI enhancement was not enabled", report)
         self.assertIn("does not prove exploitation", report)
 
+    def test_report_labels_ai_enhancement_and_fallback(self):
+        scan = parse_nmap_xml(ROOT / "samples" / "demo_scan.xml")
+        findings = classify_scan(scan)
+        findings[0].analysis_source = "Sushi AI enhancement (llama3.1:latest)"
+        report = render_markdown_report(
+            scan,
+            findings,
+            ai_requested=True,
+            ai_model="llama3.1:latest",
+            ai_warnings=["One finding used fallback guidance."],
+        )
+
+        self.assertIn("1 of 5 finding(s)", report)
+        self.assertIn("AI Fallback Notes", report)
+        self.assertIn("Sushi AI enhancement", report)
+
 
 if __name__ == "__main__":
     unittest.main()

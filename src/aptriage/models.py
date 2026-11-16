@@ -51,6 +51,7 @@ class Finding:
     evidence: str
     rationale: str
     recommendation: str
+    analysis_source: str = "Deterministic APTriage rule"
 
 
 @dataclass(slots=True)
