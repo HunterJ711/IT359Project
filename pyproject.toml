@@ -13,7 +13,7 @@ authors = [
   {name = "Hunter Jackson"},
   {name = "Tyler Werner"},
 ]
-dependencies = []
+dependencies = ["requests>=2.31,<3"]
 
 [project.scripts]
 aptriage = "aptriage.cli:main"

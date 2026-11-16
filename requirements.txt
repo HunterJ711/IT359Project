@@ -1,3 +1,2 @@
-# APTriage's offline core currently uses only the Python standard library.
-# AI-provider dependencies will be added when that optional layer is implemented.
+requests>=2.31,<3
 

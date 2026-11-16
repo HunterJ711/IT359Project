@@ -6,13 +6,13 @@ The project separates three kinds of information:
 
 1. **Scan evidence** — host, port, service, and version information reported by Nmap.
 2. **Deterministic analysis** — transparent APTriage rules that assign severity and explain why a service deserves review.
-3. **AI-assisted analysis** — an optional enhancement layer planned for the next milestone. It will never replace or modify the original evidence.
+3. **AI-assisted analysis** — an optional Sushi enhancement of explanations and recommendations. It never replaces or modifies the original evidence or rule-selected severity.
 
 > **Authorized use only:** Use APTriage only with scans of systems you own or have explicit permission to test. An open port does not by itself prove a vulnerability.
 
 ## Current Status
 
-Version `0.1.0` implements the complete offline foundation:
+Version `0.1.0` implements the offline foundation and optional Sushi AI enhancement:
 
 - Nmap XML validation and parsing
 - Host, hostname, OS, port, service, and version extraction
@@ -22,24 +22,26 @@ Version `0.1.0` implements the complete offline foundation:
 - Command-line interface
 - Synthetic demonstration data
 - Automated parser, classifier, and report tests
+- Optional Sushi AI explanations with structured-output validation
+- Automatic deterministic fallback when AI is unavailable
 
-Optional AI integration and HTML output are planned for the next milestone.
+HTML output is a possible future enhancement and is not required for the MVP.
 
 ## Requirements
 
 - Python 3.10 or newer
 - Nmap only if producing a new authorized scan
 - Git for source control
-
-The offline application currently uses only the Python standard library.
+- `requests` (installed automatically) for optional Sushi API calls
+- ISU network or VPN and a Sushi API key only when using `--ai`
 
 ## Installation
 
 Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd aptriage
+git clone https://github.com/HunterJ711/IT359Project.git
+cd IT359Project
 ```
 
 Create and activate a virtual environment:
@@ -55,6 +57,15 @@ Install APTriage in editable mode:
 python -m pip install --upgrade pip
 python -m pip install -e .
 ```
+
+Never put an API key in the repository. For an AI-enabled run, enter it privately in the current terminal:
+
+```bash
+read -s SUSHI_API_KEY
+export SUSHI_API_KEY
+```
+
+The key disappears when the terminal closes. `SUSHI_BASE_URL` and `SUSHI_MODEL` may also be set as environment variables if the course server configuration changes.
 
 For development tests:
 
@@ -77,6 +88,14 @@ python -m aptriage analyze samples/demo_scan.xml --output reports/demo-report.md
 ```
 
 APTriage prints a terminal summary and writes the full Markdown report to the requested path.
+
+To request Sushi AI enhancement:
+
+```bash
+aptriage analyze samples/demo_scan.xml --ai --output reports/ai-demo-report.md
+```
+
+If Sushi, the network, the key, or a model response fails, APTriage completes the report using deterministic fallback guidance and records the fallback in the report.
 
 ## Creating an Authorized Nmap XML File
 
@@ -107,6 +126,9 @@ Normalized host/service models
     |
     v
 Transparent classification rules
+    |
+    v
+Optional validated Sushi AI enhancement
     |
     v
 Markdown report
@@ -145,6 +167,11 @@ The rules deliberately avoid claiming that exposure proves exploitation, missing
 - Security rationale
 - Recommended remediation
 - Limitations and analysis-source labels
+- AI status and any fallback notes
+
+### Optional AI Enhancement
+
+`src/aptriage/ai_client.py` sends each deterministic finding to the ISU Sushi server. The prompt includes the rule, severity, host, port, service, evidence, and existing guidance. Sushi may improve only the rationale and recommendation. APTriage validates the returned JSON and retains the original finding whenever validation or the request fails.
 
 ## Testing
 
@@ -167,6 +194,7 @@ The test suite verifies:
 - Malformed and non-Nmap XML errors
 - Severity-rule behavior
 - Evidence and limitation language in reports
+- AI response validation and fallback behavior
 
 ## Repository Layout
 
@@ -192,7 +220,8 @@ aptriage/
 - An open service is not automatically a vulnerability.
 - The tool does not exploit systems, test credentials, or bypass controls.
 - Findings require authorized manual validation.
-- AI analysis is not yet implemented in version `0.1.0`.
+- AI output may be inaccurate and always requires manual validation.
+- Sushi access requires the ISU network or VPN and an approved account.
 
 ## Team Responsibilities
 

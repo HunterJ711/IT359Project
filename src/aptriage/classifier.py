@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from .models import Finding, ScanResult, Service
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class Rule:
     rule_id: str
     title: str

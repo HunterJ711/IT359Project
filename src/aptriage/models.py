@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class Service:
     """One open network service reported by Nmap."""
 
@@ -37,7 +37,7 @@ class Host:
     services: list[Service] = field(default_factory=list)
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class Finding:
     """A deterministic finding produced by an APTriage classification rule."""
 
@@ -51,6 +51,7 @@ class Finding:
     evidence: str
     rationale: str
     recommendation: str
+    analysis_source: str = "Deterministic APTriage rule"
 
 
 @dataclass(slots=True)
